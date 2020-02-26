@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Moment3CdCollection.Models.Loan>
+
+@{
+    ViewData["Title"] = "Lån";
+}
+
+<h1>Alla lån</h1>
+
+<p>
+    <a asp-action="Create">Låna CD</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Lånedatum
+            </th>
+            <th>
+                Användare
+            </th>
+            <th>
+                CD
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cd.Title)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.LoanId">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.LoanId">Avsluta lån</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

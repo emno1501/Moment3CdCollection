@@ -1,0 +1,39 @@
+﻿@model Moment3CdCollection.Models.User
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Ta bort användare</h1>
+
+<h3>Är du säker att du vill ta bort användaren?</h3>
+<div>
+    <h4>Användare</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Namn
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            E-post
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Telefonnummer
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNr)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="UserId" />
+        <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+        <a asp-action="Index">Tillbaka till alla användare</a>
+    </form>
+</div>

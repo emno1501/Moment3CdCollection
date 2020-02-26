@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Moment3CdCollection.Models.Cd>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>CD-samling</h1>
+
+<p>
+    <a asp-action="Create">Skapa ny CD</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Hitta CD efter titel eller artist: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Sök" class="btn btn-primary" /> |
+            <a asp-action="Index">Tillbaka till hela CD-samlingen</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th>
+                År
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
